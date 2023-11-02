@@ -32,16 +32,20 @@ function SearchBar(callback){
                 if (response.ok) {
                     return response.json();
                 } else {
-                    console.log(response);
+                    setError(true)
                     return "Something Went Wrong";
                 }
             })
             .then((data) => {
-                console.log(data)
-                navigate("/weather-result", { state: { weatherData: data } }); // Pass only the required data in the state object
+                if (Object.keys(data).length !== 0) {
+                    setError(false)
+                    navigate("/weather-result", { state: { weatherData: data } });
+                } else {
+                    setError("Cant Retrieve weather data")
+                }
             })
             .catch(error => {
-                console.log(error);
+                setError(true);
                 setError("Error fetching weather");
             });
 

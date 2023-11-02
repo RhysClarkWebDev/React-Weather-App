@@ -30,7 +30,6 @@ function WeatherCurrentAndForecast(){
     useEffect(() => {
         // Destructure the weatherData object and set the state values
         if (weatherData && weatherData.weatherData) {
-            console.log(weatherData.weatherData);
             const { main, weather, wind, name } = weatherData.weatherData.currentWeather;
     
             setForecastData(weatherData.weatherData.forecastWeather);
@@ -43,7 +42,7 @@ function WeatherCurrentAndForecast(){
             setPressure(main.pressure);
             setWeatherLocation(name);
 
-            
+
             const weatherIcon = weather[0].icon;
         
             switch (weatherIcon) {
@@ -105,7 +104,7 @@ function WeatherCurrentAndForecast(){
         return(
             <>
             <Helmet>
-                <title>{weatherLocation} Weather</title>
+                <title>{`${weatherLocation} Weather`}</title>
             </Helmet>
             <SearchBar/>
             <div className="weather-background">
